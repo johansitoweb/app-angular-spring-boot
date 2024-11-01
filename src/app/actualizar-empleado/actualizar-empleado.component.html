@@ -1,0 +1,84 @@
+<div class="col-md-6 offset-md-3">
+    <h3 class="text-center">Edición de empleado</h3>
+    <form (ngSubmit)="onSubmit()" #empleadoForm="ngForm">
+      <div class="form-group">
+        <label>Nombre : </label>
+        <input
+          type="text"
+          class="form-control"
+          id="nombre"
+          [(ngModel)]="empleado.nombre"
+          name="nombre"
+          required
+          minlength="4"
+          maxlength="10"
+          placeholder="Digite su nombre"
+          #nombre="ngModel"
+        />
+        <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+          <div *ngIf="nombre.errors?.['required']">
+            Digite su nombre por favor
+          </div>
+          <div *ngIf="nombre.errors?.['minlength']">
+            El nombre tiene que contener como mínimo 4 caracteres
+          </div>
+          <div *ngIf="nombre.errors?.['maxlength']">
+            El nombre tiene que tener como máximo 10 caracteres
+          </div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Apellido : </label>
+        <input
+          type="text"
+          class="form-control"
+          id="apellido"
+          [(ngModel)]="empleado.apellido"
+          name="apellido"
+          required
+          minlength="4"
+          maxlength="10"
+          placeholder="Digite su apellido"
+          #apellido="ngModel"
+        />
+        <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+          <div *ngIf="apellido.errors?.['required']">
+            Digite su apellido por favor
+          </div>
+          <div *ngIf="apellido.errors?.['minlength']">
+            El apellido tiene que contener como mínimo 4 caracteres
+          </div>
+          <div *ngIf="apellido.errors?.['maxlength']">
+            El apellido tiene que tener como máximo 10 caracteres
+          </div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Email : </label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          [(ngModel)]="empleado.email"
+          name="email"
+          pattern="[a-zA-Z0-9._%+-]+&#64;[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+          required
+          placeholder="Digite su email"
+          #email="ngModel"
+        />
+        <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+          <div *ngIf="email.errors?.['required']">
+            Digite su email por favor
+          </div>
+          <div *ngIf="email.errors?.['pattern']">
+            Por favor digite el email con el siguiente formato: user100&#64;gmail.com
+          </div>
+        </div>
+      </div>
+  
+      <button class="btn btn-success" [disabled]="!empleadoForm.form.valid">Guardar</button>
+    </form>
+  </div>
+  
